@@ -6,123 +6,45 @@
     </head>
 
     <body>
-        <script>
-            //function to generate computer's choice
-            function getComputerChoice() {
-                let result = Math.floor(Math.random() * 3);
+        <header class="header">
+            <h1 class="title">ROCK PAPER SCISSORS</h1>
+        </header>
 
-                switch(result) {
-                    case 0: 
-                        console.log("Rock");
-                        return 'Rock';
-                        break;
-                    case 1:
-                        console.log("Paper");
-                        return 'Paper';
-                        break;
-                    case 2:
-                        console.log("Scissors");
-                        return 'Scissors';
-                        break;
-                    default:
-                        console.log("Invalid choice");
-                }
-            }
-
-            //function to compare the player's and computer's choice
-            function playRound(playerSelection, computerSelection) {
-                player = playerSelection.toLowerCase();
-                computer = computerSelection.toLowerCase();
+        <main class="main">
+            <div class="scoreboard">
+                <h2 class="score-info" id="scoreInfo">Make your choice</h2>
+                <h3 class="score-msg" id="scoreMsg">First to score 5 points wins the game</h3>
                 
-                switch(player) {
-                    //if the user chooses "rock"
-                    case 'rock':
-                        if (computer === 'rock')
-                        {
-                            return "It is a tie.";
-                        }
-                        else if (computer === 'paper')
-                        {
-                            return "You lose! Paper beats Rock.";
-                        }
-                        else if (computer === 'scissors')
-                        {
-                            return "You win! Rock beats Scissors.";
-                        }
-                        break;
-                    //if the user chooses "paper"
-                    case 'paper':
-                        if (computer === 'rock')
-                        {
-                            return "You win! Paper beats Rock.";
-                        }
-                        else if (computer === 'paper')
-                        {
-                            return "It is a tie.";
-                        }
-                        else if (computer === 'scissors')
-                        {
-                            return "You lose! Scissors beat Paper.";
-                        }
-                        break;
-                    //if the user chooses "scissors"
-                    case 'scissors':
-                        if (computer === 'rock')
-                        {
-                            return "You lose! Rock beats Scissors.";
-                        }
-                        else if (computer === 'paper')
-                        {
-                            return "You win! Scissors beat Paper.";
-                        }
-                        else if (computer === 'scissors')
-                        {
-                            return "It is a tie.";
-                        }
-                        default:
-                            return "Invalid input from the user";
-                        break;
-                }
-            }
+                <div class="scores-container">
+                    <div class="score-box">
+                        <div class="sign" id="playerSign">❓</div>
+                        <p class="score" id="playerScore">Player: 0</p>
+                    </div>
+                    <div class="score-box">
+                        <div class="sign" id="computerSign">❓</div>
+                        <p class="score" id="computerScore">Computer: 0</p>
+                    </div>
+                </div>
+            </div>
 
-            //function to play 5 rounds of Rock-Paper-Scissors game & keep track of user's score
-            function game() {
-                let score = 0;
-                for (let i = 0; i < 5; i++)
-                {
-                    console.log("Round " + (i+1) + ":");
-                    //getting input from the user
-                    let playerSelection = prompt("Choose among Rock, Paper, and Scissors: ");
-                    // //in case the user inputs invalid choice (ex. misspelling)
-                    // while (playerSelection.toLowerCase() !== "rock" || playerSelection.toLowerCase() !== "paper" || playerSelection.toLowerCase() !== "scissors")
-                    // {
-                    //     playerSelection = prompt("Invalid input. Choose among Rock, Paper, and Scissors: ");
+            <div class="buttons">
+                <button class="btn btn-squre" id="rockbtn">
+                    <div class="sign">✊</div>
+                </button>
+                <button class="btn btn-squre" id="paperbtn">
+                    <div class="sign">✋</div>
+                </button>
+                <button class="btn btn-squre" id="scissorsbtn">
+                    <div class="sign">✌</div>
+                </button>
+            </div>
+        </main>
 
-                    //     if (playerSelection.toLowerCase === "rock" || playerSelection.toLowerCase() === "paper" || playerSelection.toLowerCase() === "scissors")
-                    //     {
-                    //         break;
-                    //     }
-                    // }
-                    //generating random choice from the computer
-                    const computerSelection = getComputerChoice();
+        <div class="modal" id="endgameModal">
+            <p class="modal-title" id="endgameMsg"></p>
+            <button class="btn restart" id="restartBtn">Play Again</button>
+        </div>
 
-                    //calling playRound function to see which one wins
-                    let result = playRound(playerSelection, computerSelection);
-                    console.log(result);
-
-                    //if the user wins, then increment the score by 1 point
-                    if (result.includes("win"))
-                    {
-                        score++;
-                    }
-                }
-                return score;
-            }
-
-            //variable to store user's total score
-            let score = game();
-            //outputs user's total score
-            console.log("You have received " + score + " points in total.");
-        </script>
+        <script src="script.js"></script>
     </body>
 </html>
